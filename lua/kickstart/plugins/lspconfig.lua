@@ -207,8 +207,19 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local project_dir = vim.fs.root(0, { '.git' })
+      if not project_dir then
+        project_dir = vim.fn.getcwd()
+      end
       local servers = {
-        -- clangd = {},
+        clangd = {
+          cmd = {
+            'clangd',
+            '--compile-commands-dir=' .. project_dir .. '/build-x86_64/subprojects/Build/flight_controller',
+            '--header-insertion=never',
+          },
+        },
+        julials = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},

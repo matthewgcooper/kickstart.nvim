@@ -66,6 +66,12 @@ return {
             require('telescope.themes').get_dropdown(),
           },
         },
+        pickers = {
+          find_files = {
+            hidden = false,
+            no_ignore = false,
+          },
+        },
       }
 
       -- Enable Telescope extensions if they are installed
