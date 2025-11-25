@@ -178,7 +178,6 @@ return {
           },
           filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
         },
-        julials = {},
         pyright = {},
         lua_ls = {
           settings = {
@@ -219,8 +218,20 @@ return {
 
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_enable = { exclude = { 'stylua' } },
+        automatic_enable = true,
       }
+
+      -- JETLS: Julia language server
+      -- Make sure `jetls` is on PATH (see JETLS docs)
+      vim.lsp.config('jetls', {
+        cmd = {
+          'jetls',
+          '--threads=auto',
+          '--',
+        },
+        filetypes = { 'julia' },
+      })
+      vim.lsp.enable 'jetls'
     end,
   },
 }
