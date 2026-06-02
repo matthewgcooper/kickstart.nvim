@@ -190,6 +190,15 @@ return {
             },
           },
         },
+        ts_ls = {
+          cmd = { 'typescript-language-server', '--stdio' },
+          filetypes = {
+            'typescript',
+          },
+          root_markers = {
+            'package.json',
+          },
+        },
       }
 
       -- Apply per-server overrides
@@ -226,10 +235,10 @@ return {
       vim.lsp.config('jetls', {
         cmd = {
           'jetls',
-          '--threads=auto',
-          '--',
+          'serve',
         },
         filetypes = { 'julia' },
+        root_markers = { 'Project.toml' },
       })
       vim.lsp.enable 'jetls'
     end,
